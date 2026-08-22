@@ -1,0 +1,8 @@
+# Source/reference material kept locally only, not needed by the deployed site
+*.docx
+/*.jpg
+/*.jpeg
+/*.png
+
+# OS cruft
+.DS_Store

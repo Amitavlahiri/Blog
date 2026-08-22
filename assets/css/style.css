@@ -1,0 +1,810 @@
+/* =========================================================
+   Amitav Lahiri — personal writing site
+   Two moods sharing one palette family:
+   - "vintage" (default): warm cream/paper, for essays, screenplay, about
+   - "cinema": deep warm espresso, for film & show reviews
+   Both share the same gold accent + cream/tan tones so nothing clashes.
+   ========================================================= */
+
+:root {
+  /* vintage / paper */
+  --cream: #f4ecdd;
+  --cream-2: #ece0c9;
+  --paper: #fbf6ec;
+  --ink: #2b2119;
+  --ink-soft: #5c4d3d;
+  --line: #d9c9a8;
+  --rust: #7a2e2b;
+  --rust-soft: #9c4b3f;
+  --gold: #b1802e;
+  --gold-bright: #c9962f;
+
+  /* cinema (still warm, never pure black) */
+  --noir-bg: #3a2a1f;
+  --noir-bg-2: #4a3627;
+  --noir-panel: #2f2118;
+  --noir-text: #f4ecdd;
+  --noir-text-soft: #d8c9ac;
+
+  --max: 760px;
+  --max-wide: 1080px;
+  --radius: 4px;
+}
+
+@font-face { font-display: swap; }
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Lora', Georgia, 'Times New Roman', serif;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+
+a { color: inherit; }
+
+.wordmark {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1.6rem;
+  letter-spacing: 0.5px;
+  color: var(--ink);
+  text-decoration: none;
+  line-height: 1;
+}
+
+/* ---------- header / nav ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem 1.75rem;
+  background: var(--cream);
+  border-bottom: 3px solid var(--ink);
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  font-family: 'Lora', serif;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.site-nav a {
+  text-decoration: none;
+  color: var(--ink-soft);
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent;
+  transition: color .15s ease, border-color .15s ease;
+}
+
+.site-nav a:hover,
+.site-nav a[aria-current="page"] {
+  color: var(--rust);
+  border-color: var(--gold);
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  padding: 0.4rem 0.6rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+@media (max-width: 680px) {
+  .nav-toggle { display: block; }
+  .site-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    background: var(--cream);
+    border-bottom: 3px solid var(--ink);
+    padding: 1.25rem 1.75rem;
+    display: none;
+  }
+  .site-nav.open { display: flex; }
+}
+
+/* ---------- footer ---------- */
+.site-footer {
+  border-top: 3px solid var(--ink);
+  background: var(--cream);
+  padding: 2.5rem 1.75rem 3rem;
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+}
+.site-footer .wordmark { font-size: 1.1rem; display: inline-block; margin-bottom: 0.5rem; }
+
+/* ---------- headings ---------- */
+h1, h2, h3, .display {
+  font-family: 'Playfair Display', 'Georgia', serif;
+  color: var(--ink);
+  margin: 0 0 0.5rem;
+  font-weight: 800;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: 'Lora', serif;
+  font-size: 0.75rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--rust);
+  margin-bottom: 0.75rem;
+}
+
+.rule {
+  border: none;
+  border-top: 1px solid var(--line);
+  margin: 2.5rem 0;
+}
+.rule.thick { border-top: 3px solid var(--ink); }
+
+/* ---------- hero (home) ---------- */
+.hero {
+  padding: 5rem 1.75rem 4rem;
+  text-align: center;
+  max-width: var(--max);
+  margin: 0 auto;
+}
+.hero .wordmark { font-size: clamp(2.6rem, 8vw, 4.2rem); }
+.hero p.tagline {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--rust-soft);
+  margin: 0.75rem 0 1.5rem;
+}
+.hero p.intro {
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+  max-width: 560px;
+  margin: 0 auto;
+}
+.hero .cta-row {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.7rem 1.5rem;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-family: 'Lora', serif;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ink);
+  transition: background .15s ease, color .15s ease;
+}
+.btn:hover { background: var(--ink); color: var(--cream); }
+.btn.solid { background: var(--rust); border-color: var(--rust); color: var(--cream); }
+.btn.solid:hover { background: var(--ink); border-color: var(--ink); }
+.btn.gold { border-color: var(--gold-bright); color: var(--gold-bright); }
+.btn.gold:hover { background: var(--gold-bright); color: var(--noir-panel); }
+
+/* ---------- section wrappers ---------- */
+.section {
+  max-width: var(--max-wide);
+  margin: 0 auto;
+  padding: 3.5rem 1.75rem;
+}
+.section-head {
+  text-align: center;
+  max-width: var(--max);
+  margin: 0 auto 2.5rem;
+}
+.section-head p { color: var(--ink-soft); }
+
+/* ---------- vintage card grid (writing) ---------- */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+}
+
+.card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.card:hover { transform: translateY(-3px); box-shadow: 0 10px 24px -12px rgba(43,33,25,0.35); }
+.card .eyebrow { margin-bottom: 0; }
+.card h3 { font-size: 1.4rem; }
+.card h3 a { text-decoration: none; }
+.card h3 a:hover { color: var(--rust); }
+.card p.excerpt { color: var(--ink-soft); font-size: 0.95rem; flex: 1; }
+.card .meta { font-size: 0.78rem; color: var(--gold); text-transform: uppercase; letter-spacing: 1px; }
+.card .read-more {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
+  color: var(--rust);
+  border-bottom: 2px solid var(--gold);
+  align-self: flex-start;
+  padding-bottom: 2px;
+}
+
+/* ---------- article (essays / screenplay) ---------- */
+.article {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 3.5rem 1.75rem 5rem;
+}
+.article .eyebrow { display: block; text-align: center; }
+.article h1 { text-align: center; font-size: clamp(2rem, 5vw, 2.9rem); }
+.article .byline {
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.5px;
+}
+.article .dek {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--rust-soft);
+  text-align: center;
+  max-width: 560px;
+  margin: 0 auto 2.5rem;
+}
+.article p { margin: 0 0 1.4rem; font-size: 1.08rem; }
+.article p:first-of-type::first-letter {
+  font-family: 'Playfair Display', serif;
+  font-weight: 800;
+  font-size: 3.4rem;
+  float: left;
+  line-height: 0.8;
+  padding: 0.1rem 0.5rem 0 0;
+  color: var(--rust);
+}
+.article blockquote {
+  margin: 2rem 0;
+  padding: 0.25rem 0 0.25rem 1.5rem;
+  border-left: 3px solid var(--gold);
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--ink-soft);
+}
+
+/* ---------- screenplay page ---------- */
+.script-frame {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  box-shadow: 0 18px 40px -24px rgba(43,33,25,0.4);
+  border-radius: var(--radius);
+  padding: 2.5rem 2rem;
+  margin-top: 1rem;
+}
+/* ---------- about ---------- */
+.about-grid {
+  max-width: var(--max-wide);
+  margin: 0 auto;
+  padding: 3.5rem 1.75rem 5rem;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+@media (max-width: 720px) {
+  .about-grid { grid-template-columns: 1fr; }
+}
+.photo-box {
+  aspect-ratio: 4 / 5;
+  border: 2px dashed var(--line);
+  border-radius: var(--radius);
+  background: var(--cream-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  padding: 1.5rem;
+}
+.about-copy p { font-size: 1.08rem; }
+.theme-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem; }
+.theme-tags span {
+  border: 1px solid var(--gold);
+  color: var(--rust);
+  padding: 0.3rem 0.8rem;
+  border-radius: 100px;
+  font-size: 0.78rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   CINEMA MOOD — film & show reviews
+   ========================================================= */
+.cinema {
+  background: var(--noir-bg);
+  color: var(--noir-text);
+}
+.cinema .section-head p { color: var(--noir-text-soft); }
+.cinema .eyebrow { color: var(--gold-bright); }
+
+.cinema .card-grid .card {
+  background: var(--noir-bg-2);
+  border-color: rgba(244,236,221,0.12);
+}
+.cinema .card p.excerpt { color: var(--noir-text-soft); }
+.cinema .card h3, .cinema .card h3 a { color: var(--noir-text); }
+.cinema .card h3 a:hover { color: var(--gold-bright); }
+.cinema .card .read-more { color: var(--gold-bright); border-color: var(--gold-bright); }
+
+/* review post hero */
+.review-hero {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: flex-end;
+  background-size: cover;
+  background-position: center;
+  border-bottom: 4px solid var(--gold);
+}
+.review-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(58,42,31,0.15) 0%, rgba(47,33,24,0.92) 92%);
+}
+.review-hero-content {
+  position: relative;
+  z-index: 1;
+  padding: 3rem 1.75rem 2.5rem;
+  max-width: var(--max-wide);
+  margin: 0 auto;
+  width: 100%;
+}
+.review-hero .film-tag {
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 3px;
+  color: var(--gold-bright);
+  font-size: 0.95rem;
+}
+.review-hero h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  color: var(--noir-text);
+  font-size: clamp(2.6rem, 8vw, 5rem);
+  letter-spacing: 2px;
+  line-height: 0.95;
+  margin: 0.3rem 0 0.75rem;
+}
+.review-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  color: var(--noir-text-soft);
+  font-size: 0.9rem;
+  align-items: center;
+}
+.review-meta-row .divider { color: var(--gold); }
+
+.review-body {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 3.5rem 1.75rem 2rem;
+}
+.review-body p { margin: 0 0 1.4rem; font-size: 1.08rem; color: var(--noir-text); }
+.review-body blockquote {
+  margin: 2.5rem 0;
+  padding: 1.5rem 2rem;
+  background: var(--noir-panel);
+  border-left: 3px solid var(--gold-bright);
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.3rem;
+  color: var(--gold-bright);
+  border-radius: var(--radius);
+}
+
+.gallery {
+  max-width: var(--max-wide);
+  margin: 0 auto;
+  padding: 1rem 1.75rem 4rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+.gallery img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  border: 1px solid rgba(244,236,221,0.15);
+}
+
+.cinema .site-footer,
+.cinema .site-header { background: var(--cream); color: var(--ink); }
+
+/* ---------- post meta (blog feel: date, read time, tags) ---------- */
+.post-meta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.5px;
+  color: var(--ink-soft);
+  margin-bottom: 2.5rem;
+}
+.post-meta .dot { color: var(--gold); }
+.tag-pill {
+  border: 1px solid var(--gold);
+  color: var(--rust);
+  padding: 0.15rem 0.65rem;
+  border-radius: 100px;
+  font-size: 0.72rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.cinema .post-meta { color: var(--noir-text-soft); }
+.cinema .tag-pill { border-color: var(--gold-bright); color: var(--gold-bright); }
+.card .card-meta {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.cinema .card .card-meta { color: var(--noir-text-soft); }
+
+/* ---------- dramatic homepage hero ---------- */
+.hero-dramatic {
+  position: relative;
+  min-height: 82vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-size: cover;
+  background-position: center 30%;
+  overflow: hidden;
+  border-bottom: 4px solid var(--gold);
+}
+.hero-dramatic::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(42,29,20,0.55) 0%, rgba(42,29,20,0.88) 100%);
+}
+.hero-dramatic-content {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+  padding: 2rem 1.75rem;
+}
+.hero-dramatic .eyebrow { color: var(--gold-bright); }
+.hero-dramatic .wordmark {
+  color: var(--cream);
+  font-size: clamp(2.8rem, 9vw, 5rem);
+  text-shadow: 0 4px 24px rgba(0,0,0,0.4);
+}
+.hero-dramatic p.tagline {
+  color: var(--gold-bright);
+  font-size: 1.25rem;
+  margin: 0.75rem 0 1.5rem;
+}
+.hero-dramatic p.intro {
+  color: var(--cream);
+  opacity: 0.92;
+  max-width: 520px;
+  margin: 0 auto;
+}
+.hero-dramatic .cta-row { margin-top: 2.25rem; }
+.hero-dramatic .btn { border-color: var(--cream); color: var(--cream); }
+.hero-dramatic .btn:hover { background: var(--cream); color: var(--ink); }
+.hero-dramatic .btn.solid { background: var(--rust); border-color: var(--rust); color: var(--cream); }
+
+/* ---------- pull-quote band (homepage) ---------- */
+.quote-band {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 4.5rem 1.75rem;
+  text-align: center;
+}
+.quote-band blockquote {
+  max-width: 720px;
+  margin: 0 auto;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(1.4rem, 4vw, 2.1rem);
+  line-height: 1.4;
+  position: relative;
+}
+.quote-band cite {
+  display: block;
+  margin-top: 1.5rem;
+  font-family: 'Lora', serif;
+  font-style: normal;
+  font-size: 0.85rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gold-bright);
+}
+
+/* ---------- about teaser (homepage) ---------- */
+.about-teaser {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 4.5rem 1.75rem;
+  text-align: center;
+}
+.about-teaser p { font-size: 1.12rem; color: var(--ink-soft); }
+
+/* ---------- footer email ---------- */
+.site-footer .footer-email {
+  display: inline-block;
+  margin-top: 0.4rem;
+  color: var(--rust);
+  text-decoration: none;
+  border-bottom: 1px solid var(--gold);
+}
+.cinema .site-footer .footer-email { color: var(--rust); }
+
+/* =========================================================
+   SCREENPLAY FORMATTING
+   ========================================================= */
+.script-frame { padding: 3rem 2.5rem; }
+.script-title-block { text-align: center; margin-bottom: 2.5rem; }
+.script-title-block .slugline-deco {
+  font-family: 'Courier Prime', monospace;
+  letter-spacing: 4px;
+  color: var(--gold);
+  font-size: 0.8rem;
+}
+
+.script-page { font-family: 'Courier Prime', 'Courier New', monospace; font-size: 0.95rem; line-height: 1.6; color: var(--ink); }
+.script-page .scene {
+  margin-bottom: 1.6rem;
+  padding-top: 1.4rem;
+  border-top: 1px dashed var(--line);
+}
+.script-page .scene:first-child { border-top: none; padding-top: 0; }
+.script-page .scene-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  background: var(--cream-2);
+  padding: 0.5rem 0.9rem;
+  border-radius: var(--radius);
+  margin-bottom: 0.9rem;
+}
+.script-page .scene-heading .scene-no {
+  font-size: 0.75rem;
+  color: var(--gold);
+  white-space: nowrap;
+}
+.script-page .action { margin: 0 0 0.9rem; line-height: 1.6; }
+.script-page .character {
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin: 1.1rem 0 0.1rem;
+}
+.script-page .parenthetical {
+  text-align: center;
+  font-style: italic;
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+  margin: 0 auto 0.2rem;
+}
+.script-page .dialogue {
+  max-width: 62%;
+  margin: 0 auto 0.9rem;
+  text-align: left;
+  line-height: 1.55;
+}
+.script-page .transition {
+  text-align: right;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--rust);
+  margin: 1.2rem 0;
+}
+@media (max-width: 560px) {
+  .script-page .dialogue { max-width: 100%; }
+  .script-page .scene-heading { flex-direction: column; align-items: flex-start; gap: 0.2rem; }
+}
+
+/* =========================================================
+   LOOKBOOK BANDS (story / character / setting) — A24-style
+   full-width alternating photo + title bands, used to open
+   the screenplay page before the script itself.
+   ========================================================= */
+.lookbook { background: var(--noir-bg); border-bottom: 4px solid var(--gold); }
+.lookbook-band {
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 46vh;
+}
+.lookbook-band:nth-child(even) { flex-direction: row-reverse; }
+.lookbook-media {
+  flex: 1 1 360px;
+  position: relative;
+  min-height: 320px;
+  background-size: cover;
+  background-position: center;
+}
+.lookbook-media.placeholder {
+  border: 2px dashed rgba(244,236,221,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--noir-text-soft);
+  font-size: 0.85rem;
+  padding: 2rem;
+  margin: 0.75rem;
+}
+.lookbook-content {
+  flex: 1 1 360px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem 3rem;
+  position: relative;
+}
+.lookbook-content .kicker {
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 3px;
+  color: var(--gold-bright);
+  font-size: 0.9rem;
+  margin-bottom: 0.4rem;
+}
+.lookbook-content h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  color: var(--noir-text);
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  letter-spacing: 1px;
+  line-height: 0.95;
+  margin: 0 0 1rem;
+}
+.lookbook-content p {
+  color: var(--noir-text-soft);
+  font-size: 0.98rem;
+  max-width: 42ch;
+  margin: 0;
+}
+.lookbook-brand {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 2px;
+  color: var(--noir-text-soft);
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+@media (max-width: 680px) {
+  .lookbook-band, .lookbook-band:nth-child(even) { flex-direction: column; }
+  .lookbook-content { padding: 2.5rem 1.75rem; }
+}
+
+/* =========================================================
+   REVIEW TEMPLATE ELEMENTS (poster+info card, rating ribbon, pills)
+   ========================================================= */
+.review-infocard {
+  max-width: var(--max);
+  margin: -3.5rem auto 0;
+  position: relative;
+  z-index: 2;
+  background: var(--noir-panel);
+  border: 1px solid rgba(244,236,221,0.14);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  display: grid;
+  grid-template-columns: 120px 1fr auto;
+  gap: 1.5rem;
+  align-items: center;
+  box-shadow: 0 20px 40px -20px rgba(0,0,0,0.5);
+}
+@media (max-width: 640px) {
+  .review-infocard { grid-template-columns: 1fr; text-align: center; }
+}
+.review-poster {
+  width: 120px;
+  aspect-ratio: 2 / 3;
+  border-radius: var(--radius);
+  object-fit: cover;
+  border: 1px solid rgba(244,236,221,0.15);
+}
+.review-poster-placeholder {
+  width: 120px;
+  aspect-ratio: 2 / 3;
+  border-radius: var(--radius);
+  border: 2px dashed rgba(244,236,221,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--noir-text-soft);
+  font-size: 0.72rem;
+  text-align: center;
+  padding: 0.5rem;
+  margin: 0 auto;
+}
+.genre-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.genre-pills span {
+  border: 1px solid var(--gold-bright);
+  color: var(--gold-bright);
+  padding: 0.25rem 0.75rem;
+  border-radius: 100px;
+  font-size: 0.72rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.verdict-ribbon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 92px;
+  height: 92px;
+  border: 3px solid var(--gold-bright);
+  border-radius: 50%;
+  text-align: center;
+  color: var(--gold-bright);
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 1px;
+  line-height: 1.05;
+  font-size: 0.85rem;
+  padding: 0.4rem;
+  margin: 0 auto;
+}
+.gallery-label {
+  max-width: var(--max-wide);
+  margin: 3.5rem auto 0;
+  padding: 0 1.75rem;
+  text-align: center;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 4px;
+  color: var(--noir-text-soft);
+  font-size: 0.95rem;
+}
+
+/* ---------- utility ---------- */
+.center { text-align: center; }
+.mt-0 { margin-top: 0; }
