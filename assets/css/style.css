@@ -96,33 +96,98 @@ a { color: inherit; }
   border-color: var(--gold);
 }
 
-.nav-toggle {
-  display: none;
-  background: none;
-  border: 2px solid var(--ink);
-  border-radius: var(--radius);
-  padding: 0.4rem 0.6rem;
-  font-size: 1rem;
-  cursor: pointer;
+@media (max-width: 680px) {
+  .site-header { padding: 1rem 1.25rem; }
+  .site-nav { gap: 1.1rem; }
 }
 
-@media (max-width: 680px) {
-  .nav-toggle { display: block; }
-  .site-nav {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-    background: var(--cream);
-    border-bottom: 3px solid var(--ink);
-    padding: 1.25rem 1.75rem;
-    display: none;
-  }
-  .site-nav.open { display: flex; }
+/* ---------- single-page sections ---------- */
+section[id], #blogs { scroll-margin-top: 4.5rem; }
+
+/* chapter banner: marks the start of Writing / Reviews */
+.chapter {
+  scroll-margin-top: 4.5rem;
+  text-align: center;
+  padding: 5rem 1.75rem 4.5rem;
+  background: var(--cream-2);
+  border-top: 3px solid var(--ink);
+  border-bottom: 3px solid var(--ink);
+  position: relative;
 }
+.chapter::before, .chapter::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  height: 1px;
+  background: var(--ink);
+}
+.chapter::before { top: 6px; }
+.chapter::after { bottom: 6px; }
+.chapter-no {
+  display: block;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 4px;
+  font-size: 1rem;
+  color: var(--rust);
+  margin-bottom: 0.6rem;
+}
+.chapter h2 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: clamp(3rem, 10vw, 5.5rem);
+  line-height: 1;
+  margin: 0 auto 1rem;
+  display: inline-block;
+  border-bottom: 3px solid var(--gold);
+  padding-bottom: 0.4rem;
+}
+.chapter p {
+  margin: 0;
+  font-style: italic;
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+}
+.chapter.dark { background: var(--noir-panel); color: var(--noir-text); border-color: var(--gold); }
+.chapter.dark::before, .chapter.dark::after { background: var(--gold); }
+.chapter.dark .chapter-no { color: var(--gold-bright); }
+.chapter.dark h2 { color: var(--noir-text); }
+.chapter.dark p { color: var(--noir-text-soft); }
+
+/* break between pieces inside a chapter */
+.piece-break {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 2.5rem 1.75rem;
+}
+.piece-break span {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  color: var(--gold);
+  font-size: 1.1rem;
+}
+.piece-break span::before, .piece-break span::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+.piece-break p {
+  margin: 0;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 2px;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+.piece-break.dark { max-width: none; background: var(--noir-bg); }
+.piece-break.dark span { max-width: var(--max); color: var(--gold-bright); }
+.piece-break.dark span::before, .piece-break.dark span::after { background: rgba(244,236,221,0.25); }
+.piece-break.dark p { color: var(--noir-text-soft); }
 
 /* ---------- footer ---------- */
 .site-footer {
@@ -282,7 +347,7 @@ h1, h2, h3, .display {
   margin: 0 auto 2.5rem;
 }
 .article p { margin: 0 0 1.4rem; font-size: 1.08rem; }
-.article p:first-of-type::first-letter {
+.article .post-meta + p::first-letter {
   font-family: 'Playfair Display', serif;
   font-weight: 800;
   font-size: 3.4rem;
@@ -299,6 +364,22 @@ h1, h2, h3, .display {
   font-style: italic;
   font-size: 1.2rem;
   color: var(--ink-soft);
+}
+
+/* boxed essay: white card on the cream page */
+.article.boxed {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--rust);
+  border-radius: 8px;
+  box-shadow: 0 20px 45px -28px rgba(43,33,25,0.45);
+  margin: 3rem auto;
+  padding: 3rem 3.25rem 2.5rem;
+}
+.article.boxed p:last-child,
+.article.boxed blockquote:last-child { margin-bottom: 0; }
+@media (max-width: 680px) {
+  .article.boxed { margin: 2rem 1rem; padding: 2rem 1.35rem 1.5rem; }
 }
 
 /* ---------- screenplay page ---------- */
@@ -662,6 +743,7 @@ h1, h2, h3, .display {
   min-height: 46vh;
 }
 .lookbook-band:nth-child(even) { flex-direction: row-reverse; }
+.lookbook-band { min-height: 0; border-bottom: 1px solid rgba(244,236,221,0.12); }
 .lookbook-media {
   flex: 1 1 360px;
   position: relative;
@@ -682,6 +764,8 @@ h1, h2, h3, .display {
 }
 .lookbook-content {
   flex: 1 1 360px;
+  max-width: var(--max);
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
