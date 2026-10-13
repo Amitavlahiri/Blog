@@ -102,7 +102,7 @@ a { color: inherit; }
 }
 
 /* ---------- single-page sections ---------- */
-section[id], #blogs { scroll-margin-top: 4.5rem; }
+section[id] { scroll-margin-top: 4.5rem; }
 
 /* chapter banner: marks the start of Writing / Reviews */
 .chapter {
@@ -892,3 +892,77 @@ h1, h2, h3, .display {
 /* ---------- utility ---------- */
 .center { text-align: center; }
 .mt-0 { margin-top: 0; }
+
+/* ---------- home: card sections ---------- */
+.section-head h2 { font-size: clamp(2rem, 5vw, 2.9rem); }
+.cinema .section-head h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-weight: 400;
+  letter-spacing: 2px;
+  font-size: clamp(2.6rem, 7vw, 4rem);
+  color: var(--noir-text);
+}
+#reviews { border-top: 4px solid var(--gold); }
+#reviews .section { padding-bottom: 4.5rem; }
+.card h3 a { color: inherit; }
+
+/* ---------- single-piece pages ---------- */
+.back-row { text-align: center; margin: 0 auto; padding: 0 1.75rem 4rem; }
+.cinema .back-row { padding-top: 1rem; }
+.article h2 { font-size: 1.55rem; margin: 2.5rem 0 1rem; }
+.article h3 { font-size: 1.2rem; margin: 2rem 0 0.75rem; color: var(--rust); }
+.essay-figure { margin: 2rem 0; }
+.essay-figure img { width: 100%; height: auto; border: 1px solid var(--line); border-radius: var(--radius); }
+.essay-figure figcaption { font-size: 0.85rem; color: var(--ink-soft); margin-top: 0.6rem; font-style: italic; }
+.works-cited { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+.works-cited h2 { font-size: 1.1rem; margin-top: 0; letter-spacing: 1px; text-transform: uppercase; }
+.works-cited ul { list-style: none; padding: 0; margin: 0; }
+.works-cited li {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin-bottom: 0.7rem;
+  padding-left: 1.5rem;
+  text-indent: -1.5rem;
+  overflow-wrap: anywhere;
+}
+.article .post-meta + p.dek::first-letter { all: unset; }
+
+/* ---------- footer view counter ---------- */
+.view-count {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.15rem;
+  margin: 0 auto 1.75rem;
+  color: var(--rust);
+}
+.view-count-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3.2rem, 10vw, 4.5rem);
+  line-height: 1;
+  letter-spacing: 2px;
+  font-variant-numeric: tabular-nums;
+  display: inline-block;
+}
+.view-count-plus {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem, 6vw, 2.8rem);
+  color: var(--gold);
+  opacity: 0;
+  transform: scale(0.4);
+  transition: opacity .25s ease, transform .35s cubic-bezier(.34,1.8,.64,1);
+}
+.view-count-label {
+  margin-left: 0.6rem;
+  font-size: 0.8rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.view-count.done .view-count-num { animation: count-pop .45s cubic-bezier(.34,1.8,.64,1); }
+.view-count.done .view-count-plus { opacity: 1; transform: scale(1); }
+@keyframes count-pop {
+  0% { transform: scale(1); }
+  45% { transform: scale(1.18); color: var(--gold-bright); }
+  100% { transform: scale(1); }
+}
